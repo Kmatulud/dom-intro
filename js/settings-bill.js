@@ -27,11 +27,10 @@ function updateSettings(){
     warningSetting = myWarningLevelSetting.value;
     criticalSetting = myCriticalLevelSetting.value;
     myBtn.disabled = false;
-    alert('settings updated!');
 }
 updateSettingsBtn.addEventListener('click', updateSettings);
 
-function addSettings(){
+function addFunction(){
     
     //get the value from the billItemTypeRadio radio buttons
     var myBillItemTypeWithSettings = document.querySelector('.billItemTypeWithSettings:checked');
@@ -68,12 +67,4 @@ function addSettings(){
     }
 }
 //add an event listener for when the add button is pressed
-myBtn.addEventListener('click', addSettings);
-// get a reference to the sms or call radio buttons
-//add an event listener for when the add button is pressed
-//in the event listener get the value from the billItemTypeRadio radio buttons
-// * add the appropriate value to the call / sms total
-// * add the appropriate value to the overall total
-// * add nothing for invalid values that is not 'call' or 'sms'.
-// * display the latest total on the screen.
-// * check the value thresholds and display the total value in the right color.
+myBtn.addEventListener('click', addFunction);
