@@ -30,14 +30,16 @@ theButton.addEventListener('click', function(){
     var totalBill = totalPhoneBill(callsMade);
     var roundedTotal = totalBill;
     theBillTotal.innerHTML = roundedTotal;
-     if (theBillTotal >= 20.00){
-        theBillTotal.classList.replace(theBillTotal.className, "warning");
+     if (roundedTotal >= 20.00 && roundedTotal < 30.00){
+        theBillTotal.classList.add("warning");
+        theBillTotal.classList.remove("danger");
     }
-    // else if (theBillTotal >= 30.00){
-    //     theBillTotal.classList.replace("danger");
-    // }
-    // else{
-        
-    // }
-    // console.log(theBillTotal.classList);
+    else if (roundedTotal >= 30.00){
+        theBillTotal.classList.add("danger");
+        theBillTotal.classList.remove("warning");
+    }
+    else{
+        theBillTotal.classList.remove("danger");
+        theBillTotal.classList.remove("warning");
+    }
 })

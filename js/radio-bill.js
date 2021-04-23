@@ -5,27 +5,44 @@ var mySmsTotalTwo = document.querySelector('.smsTotalTwo');
 var myRadioBillAddBtn = document.querySelector('.radioBillAddBtn');
 //create a variable that will keep track of the total bill
 var myTotalTwo = document.querySelector('.totalTwo');
-//add an event listener for when the add button is pressed
-myRadioBillAddBtn.addEventListener('click', function(){
-    var callsTotal = 0;
-    var smsTotal = 0;
+
+var smsTotal = 0;
+var callsTotal = 0;
+function textBillTotal(){
+    //get the value from the billItemTypeRadio radio buttons
     var myBillItemTypeRadio = document.querySelector('.billItemTypeRadio:checked');
-    var thisBillItemTypeRadio = myBillItemTypeRadio.value;
-    if (thisBillItemTypeRadio === 'call'){
+    // get the value entered in the billType textfield
+    var billTypeEntered = myBillItemTypeRadio.value.trim();
+    //check if the value in the bill type textbox is 'sms' or 'call'
+    if (billTypeEntered === "call"){
         callsTotal += 2.75;
     }
-    else if (thisBillItemTypeRadio === 'sms'){
+    else if (billTypeEntered === "sms"){
         smsTotal += 0.75;
-    }else{
-        alert('please make a selection!');
     }
+    else{
+        alert('input correct value');
+    }
+    
+    //update the totals that is displayed on the screen.
     myCallTotalTwo.innerHTML = callsTotal.toFixed(2);
     mySmsTotalTwo.innerHTML = smsTotal.toFixed(2);
+    // * add the appropriate value to the running total
     var totalCost = parseFloat(myCallTotalTwo.innerHTML) + parseFloat(mySmsTotalTwo.innerHTML);
+    // * display the latest total on the screen
     myTotalTwo.innerHTML = totalCost.toFixed(2);
-    
-})
-//in the event listener get the value from the billItemTypeRadio radio buttons
-// * add the appropriate value to the running total
-// * add nothing for invalid values that is not 'call' or 'sms'.
-// * display the latest total on the screen
+    if (totalCost.toFixed(2) >= 20.00 && totalCost.toFixed(2) < 30.00){
+        myTotalTwo.classList.add("warning");
+        myTotalTwo.classList.remove("danger");
+    }
+    else if (totalCost.toFixed(2) >= 30.00){
+        myTotalTwo.classList.add("danger");
+        myTotalTwo.classList.remove("warning");
+    }
+    else{
+        myTotalTwo.classList.remove("danger");
+        myTotalTwo.classList.remove("warning");
+    }
+}
+//add an event listener for when the add button is pressed
+myRadioBillAddBtn.addEventListener('click', textBillTotal);
