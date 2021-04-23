@@ -31,11 +31,11 @@ function textBillTotal(){
     var totalCost = parseFloat(myCallTotalTwo.innerHTML) + parseFloat(mySmsTotalTwo.innerHTML);
     // * display the latest total on the screen
     myTotalTwo.innerHTML = totalCost.toFixed(2);
-    if (totalCost.toFixed(2) >= 20.00 && totalCost.toFixed(2) < 30.00){
+    if (totalCost.toFixed(2) >= 30.00 && totalCost.toFixed(2) < 50.00){
         myTotalTwo.classList.add("warning");
         myTotalTwo.classList.remove("danger");
     }
-    else if (totalCost.toFixed(2) >= 30.00){
+    else if (totalCost.toFixed(2) >= 50.00){
         myTotalTwo.classList.add("danger");
         myTotalTwo.classList.remove("warning");
     }

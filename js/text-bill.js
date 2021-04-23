@@ -26,11 +26,11 @@ function textBillTotal(){
     var totalCost = parseFloat(myCallTotal.innerHTML) + parseFloat(mySmsTotal.innerHTML);
     // * display the latest total on the screen
     myTotal.innerHTML = totalCost.toFixed(2);
-    if (totalCost.toFixed(2) >= 20.00 && totalCost.toFixed(2) < 30.00){
+    if (totalCost.toFixed(2) >= 30.00 && totalCost.toFixed(2) < 50.00){
         myTotal.classList.add("warning");
         myTotal.classList.remove("danger");
     }
-    else if (totalCost.toFixed(2) >= 30.00){
+    else if (totalCost.toFixed(2) >= 50.00){
         myTotal.classList.add("danger");
         myTotal.classList.remove("warning");
     }
