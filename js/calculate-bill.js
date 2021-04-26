@@ -1,5 +1,5 @@
 //get a reference to the calculate button
-var theButton = document.querySelector('.calculateBtn');
+var theBtn = document.querySelector('.calculateBtn');
 //get a reference to the billTotal element
 var theBillTotal = document.querySelector('.billTotal');
 //get a reference to the billString
@@ -25,16 +25,15 @@ var theBillstring = document.querySelector('.billString');
    return result.toFixed(2);
  }
 //link the function to a click event on the calculate button
-theButton.addEventListener('click', function(){
-    var callsMade = theBillstring.value;   
-    var totalBill = totalPhoneBill(callsMade);
-    var roundedTotal = totalBill;
-    theBillTotal.innerHTML = roundedTotal;
-     if (roundedTotal >= 20.00 && roundedTotal < 30.00){
+theBtn.addEventListener('click', function(){
+    var inputValue = theBillstring.value;   
+    var totalBill = totalPhoneBill(inputValue);
+    theBillTotal.innerHTML = totalBill;
+     if (totalBill >= 20.00 && totalBill < 30.00){
         theBillTotal.classList.add("warning");
         theBillTotal.classList.remove("danger");
     }
-    else if (roundedTotal >= 30.00){
+    else if (totalBill >= 30.00){
         theBillTotal.classList.add("danger");
         theBillTotal.classList.remove("warning");
     }

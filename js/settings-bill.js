@@ -2,6 +2,9 @@
 var myCallTotalSettings = document.querySelector('.callTotalSettings');
 var mySmsTotalSettings = document.querySelector('.smsTotalSettings');
 var myTotalSettings = document.querySelector('.totalSettings');
+myCallTotalSettings.innerHTML = 0.00.toFixed(2);
+mySmsTotalSettings.innerHTML = 0.00.toFixed(2);
+myTotalSettings.innerHTML = 0.00.toFixed(2);
 // get refences to all the settings fields
 var myCallCostSetting = document.querySelector('.callCostSetting');
 var mySmsCostSetting = document.querySelector('.smsCostSetting');
@@ -17,9 +20,9 @@ var smsSetting = 0;
 var warningSetting = 0;
 var criticalSetting = 0;
 // create a variables that will keep track of all three totals.
-var callsTotal = 0;
-var smsTotal = 0;
-var total = 0;
+var callTotal = 0;
+var smTotal = 0;
+var totals = 0;
 //add an event listener for when the 'Update settings' button is pressed
 function updateSettings(){
     callSetting = myCallCostSetting.value;
@@ -38,25 +41,24 @@ function addFunction(){
     var billTypeEntered = myBillItemTypeWithSettings.value.trim();
     //check if the value in the bill type textbox is 'sms' or 'call'
     if (billTypeEntered === "call"){
-        callsTotal += parseFloat(callSetting);
+        callTotal += parseFloat(callSetting);
     }
     else if (billTypeEntered === "sms"){
-        smsTotal += parseFloat(smsSetting);
+        smTotal += parseFloat(smsSetting);
     }
     
     //update the totals that is displayed on the screen.
-    myCallTotalSettings.innerHTML = callsTotal.toFixed(2);
-    mySmsTotalSettings.innerHTML = smsTotal.toFixed(2);
+    myCallTotalSettings.innerHTML = callTotal.toFixed(2);
+    mySmsTotalSettings.innerHTML = smTotal.toFixed(2);
     // * add the appropriate value to the running total
-    var totalCost = parseFloat(myCallTotalSettings.innerHTML) + parseFloat(mySmsTotalSettings.innerHTML);
+    totals = parseFloat(myCallTotalSettings.innerHTML) + parseFloat(mySmsTotalSettings.innerHTML);
     // * display the latest total on the screen
-    myTotalSettings.innerHTML = totalCost.toFixed(2);
-    if (totalCost.toFixed(2) >= parseFloat(warningSetting).toFixed(2) && totalCost.toFixed(2) < parseFloat(criticalSetting).toFixed(2)){
+    myTotalSettings.innerHTML = totals.toFixed(2);
+     if (totals >= parseFloat(warningSetting).toFixed(2) && totals < parseFloat(criticalSetting).toFixed(2)){
         myTotalSettings.classList.add("warning");
         myTotalSettings.classList.remove("danger");
-        console.log(warningSetting);
     }
-    else if (totalCost.toFixed(2) === parseFloat(criticalSetting).toFixed(2)){
+    else if (totals === parseFloat(criticalSetting).toFixed(2) || totals > parseFloat(criticalSetting).toFixed(2)){
         myTotalSettings.classList.add("danger");
         myTotalSettings.classList.remove("warning");
         myBtn.disabled = true;

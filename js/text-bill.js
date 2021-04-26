@@ -6,7 +6,9 @@ var myAddButton = document.querySelector('.addToBillBtn');
 var myCallTotal = document.querySelector('.callTotalOne');
 var mySmsTotal = document.querySelector('.smsTotalOne');
 var myTotal = document.querySelector('.totalOne');
-
+myCallTotal.innerHTML = 0.00.toFixed(2);
+mySmsTotal.innerHTML = 0.00.toFixed(2);
+myTotal.innerHTML = 0.00.toFixed(2);
 var callsTotal = 0;
 var smsTotal = 0;
 function textBillTotal(){ 
@@ -23,14 +25,14 @@ function textBillTotal(){
     myCallTotal.innerHTML = callsTotal.toFixed(2);
     mySmsTotal.innerHTML = smsTotal.toFixed(2);
     // * add the appropriate value to the running total
-    var totalCost = parseFloat(myCallTotal.innerHTML) + parseFloat(mySmsTotal.innerHTML);
+    var total = parseFloat(myCallTotal.innerHTML) + parseFloat(mySmsTotal.innerHTML);
     // * display the latest total on the screen
-    myTotal.innerHTML = totalCost.toFixed(2);
-    if (totalCost.toFixed(2) >= 30.00 && totalCost.toFixed(2) < 50.00){
+    myTotal.innerHTML = total.toFixed(2);
+    if (total.toFixed(2) >= 30.00 && total.toFixed(2) < 50.00){
         myTotal.classList.add("warning");
         myTotal.classList.remove("danger");
     }
-    else if (totalCost.toFixed(2) >= 50.00){
+    else if (total.toFixed(2) >= 50.00){
         myTotal.classList.add("danger");
         myTotal.classList.remove("warning");
     }
