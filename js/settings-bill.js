@@ -58,7 +58,7 @@ function addFunction(){
         myTotalSettings.classList.add("warning");
         myTotalSettings.classList.remove("danger");
     }
-    else if (totals === parseFloat(criticalSetting).toFixed(2) || totals > parseFloat(criticalSetting).toFixed(2)){
+    else if (totals >= parseFloat(criticalSetting).toFixed(2)){
         myTotalSettings.classList.add("danger");
         myTotalSettings.classList.remove("warning");
         myBtn.disabled = true;
