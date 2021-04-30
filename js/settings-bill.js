@@ -30,6 +30,8 @@ function updateSettings(){
     warningSetting = myWarningLevelSetting.value;
     criticalSetting = myCriticalLevelSetting.value;
     myBtn.disabled = false;
+    myTotalSettings.classList.remove("danger");
+    myTotalSettings.classList.remove("warning");
 }
 updateSettingsBtn.addEventListener('click', updateSettings);
 
