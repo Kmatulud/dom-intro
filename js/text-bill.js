@@ -11,7 +11,7 @@ mySmsTotal.innerHTML = 0.00.toFixed(2);
 myTotal.innerHTML = 0.00.toFixed(2);
 var callsTotal = 0;
 var smsTotal = 0;
-function textBillTotal(){ 
+function textBillTotal(){
     // get the value entered in the billType textfield
     var billTypeEntered = myBillTypeText.value.trim();
     //check if the value in the bill type textbox is 'sms' or 'call'

@@ -21,12 +21,12 @@ var theBillstring = document.querySelector('.billString');
        total2 += 0.75;
      }
    }
-   var result = total1 + total2; 
+   var result = total1 + total2;
    return result.toFixed(2);
  }
 //link the function to a click event on the calculate button
 theBtn.addEventListener('click', function(){
-    var inputValue = theBillstring.value;   
+    var inputValue = theBillstring.value;
     var totalBill = totalPhoneBill(inputValue);
     theBillTotal.innerHTML = totalBill;
      if (totalBill >= 20.00 && totalBill < 30.00){

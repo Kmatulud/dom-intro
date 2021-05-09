@@ -36,7 +36,7 @@ function updateSettings(){
 updateSettingsBtn.addEventListener('click', updateSettings);
 
 function addFunction(){
-    
+
     //get the value from the billItemTypeRadio radio buttons
     var myBillItemTypeWithSettings = document.querySelector('.billItemTypeWithSettings:checked');
     // get the value entered in the billType textfield
@@ -48,7 +48,7 @@ function addFunction(){
     else if (billTypeEntered === "sms"){
         smTotal += parseFloat(smsSetting);
     }
-    
+
     //update the totals that is displayed on the screen.
     myCallTotalSettings.innerHTML = callTotal.toFixed(2);
     mySmsTotalSettings.innerHTML = smTotal.toFixed(2);
