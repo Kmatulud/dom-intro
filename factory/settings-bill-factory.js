@@ -1,4 +1,4 @@
-function settingsBillFactory(){
+function SettingsBillFactory(){
     var theCallCost = 0;
     var theSmsCost = 0;
     var theWarningLevel = 0;
@@ -10,13 +10,14 @@ function settingsBillFactory(){
     }
     function getCallCost(){
         return theCallCost;
-    }
+    } 
 
     function setSmsCost(smsCost){
         theSmsCost = smsCost;
     }
     function getSmsCost(){
         return theSmsCost;
+
     }
 
     function setWarningLevel(warningLevel){
@@ -34,6 +35,7 @@ function settingsBillFactory(){
     function updateCallTotal(){
         if(!hasReachedCriticalLevel()){
             totalCallCost += theCallCost;
+            console.log(totalCallCost);
         }
     }
     function getCallTotal(){
@@ -42,6 +44,7 @@ function settingsBillFactory(){
     function updateSmsTotal(){
         if(!hasReachedCriticalLevel()){
             totalSmsCost += theSmsCost;
+            console.log(totalSmsCost);
         }
     }
     function getSmsTotal(){
@@ -53,8 +56,9 @@ function settingsBillFactory(){
     function hasReachedCriticalLevel(){
         getOverallTotal() >= getCriticalLevel()
     }
-    function checkTheLevels(){
-        if(getOverallTotal() >= getWarningLevel() && getOverallTotal() < getCriticalLevel()){
+    function checkTheLevels(myTotalSettings){
+        console.log(myTotalSettings);
+        if(myTotalSettings >= getWarningLevel() && myTotalSettings < getCriticalLevel()){
             return 'warning'
         }if (hasReachedCriticalLevel){
             return 'danger';

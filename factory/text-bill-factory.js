@@ -1,15 +1,18 @@
-function textBill(){
-    var theCallPrice = 2.75;
-    var theSmsPrice = 0.75;
+function TextBillFactory(){
     var warning = 30;
     var critical = 50;
     var theCallPriceTotal = 0;
     var theSmsPriceTotal = 0;
+    var CallCost = 2.75;
+    var SmsCost = 0.75;
     function check(theBill){
         if (theBill === 'call'){
-            theCallPriceTotal += theCallPrice;
-        }else if(theBill === 'sms'){
-            theSmsPriceTotal += theSmsPrice;
+            theCallPriceTotal += CallCost;
+        console.log(theCallPriceTotal)
+        }if(theBill === 'sms'){
+            theSmsPriceTotal += SmsCost;
+            console.log(theSmsPriceTotal)
+
         }
     }
     function getCallPriceTotal(){
@@ -23,13 +26,14 @@ function textBill(){
         return getCallPriceTotal() + getSmsPriceTotal();
     }
 
-    function checkLevels(sum){
-        if (sum >= warning && sum < critical){
+    function checkLevels(myTotal){
+        console.log(myTotal)
+        if (myTotal >= warning && myTotal < critical){
             return 'warning';
-        }else if (sum >= critical){
+        }else if (myTotal >= critical){
             return 'danger';
         }else
-        return myTotal;
+        return 'totalOne';
     }
     return {
         check,

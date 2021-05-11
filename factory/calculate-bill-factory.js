@@ -1,4 +1,4 @@
-function calculateFactory(){
+function CalculateFactory(){
     let theCallsTotal = 2.75;
     let theSmssTotal = 0.75;
     let theWarningLevels = 20;
@@ -16,11 +16,13 @@ function calculateFactory(){
        }
     }
    
-    function checkTheLevels(sum){
-        if (sum >= theWarningLevels && sum < theCriticalLevels){
+    function checkTheLevels(theTotals){
+        if (theTotals >= theWarningLevels && theTotals < theCriticalLevels){
             return 'warning';
-        }else if (sum >= theCriticalLevels){
+        }else if (theTotals >= theCriticalLevels){
             return 'danger';
+        }else{
+            return 'billTotal';
         }
     }
      function allTotals(){
