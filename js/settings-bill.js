@@ -9,35 +9,46 @@ let myCriticalLevelSetting = document.querySelector('.criticalLevelSetting');
 let myBtn = document.querySelector('.btn');
 let updateSettingsBtn = document.querySelector('.updateSettings');
 
-
-updateSettingsBtn.addEventListener('click', function(){
 const theSettingsBillFactory = SettingsBillFactory();
-
+function updateFunction(){
     theSettingsBillFactory.setCallCost(myCallCostSetting.value) ;
     theSettingsBillFactory.setSmsCost(mySmsCostSetting.value);
     theSettingsBillFactory.setWarningLevel(myWarningLevelSetting.value);
     theSettingsBillFactory.setCriticalLevel(myCriticalLevelSetting.value);
-})
+    // myTotalSettings.classList.remove(theSettingsBillFactory.removeWarning());
+    // myTotalSettings.classList.remove(theSettingsBillFactory.removeDanger());
+}
+updateSettingsBtn.addEventListener('click', updateFunction);
 
 
-myBtn.addEventListener('click', function(){
-const theSettingsBillFactory = SettingsBillFactory();
+function settingsFunction(){
+    let myBillItemTypeWithSettings = document.querySelector('.billItemTypeWithSettings:checked');/*let billtype = myBillItemTypeWithSettings.value.trim();*/
+    if(myBillItemTypeWithSettings){
+        theSettingsBillFactory.setRadioValue(myBillItemTypeWithSettings.value)
+    }
+    
+    theSettingsBillFactory.getSmsCost();
+    theSettingsBillFactory.getCallCost();
+
+    if (theSettingsBillFactory.getRadioValue() === "call"){
+        theSettingsBillFactory.updateCallTotal();
+    }
+    if (theSettingsBillFactory.getRadioValue() === "sms"){
+        theSettingsBillFactory.updateSmsTotal();
+    }
+
+    theSettingsBillFactory.getWarningLevel();
+    theSettingsBillFactory.getCriticalLevel();
+
+    mySmsTotalSettings.innerHTML =  theSettingsBillFactory.getSmsTotal().toFixed(2);
+    myCallTotalSettings.innerHTML = theSettingsBillFactory.getCallTotal().toFixed(2);
+    myTotalSettings.innerHTML = theSettingsBillFactory.getOverallTotal().toFixed(2);
+
+    var checkLevels = theSettingsBillFactory.checkTheLevels();
 
 
-    let myBillItemTypeWithSettings = document.querySelector('.billItemTypeWithSettings:checked');
-
-    theSettingsBillFactory.updateCallTotal(myBillItemTypeWithSettings.value);
-    theSettingsBillFactory.updateSmsTotal(myBillItemTypeWithSettings.value);
-    theSettingsBillFactory.getOverallTotal(myBillItemTypeWithSettings.value);
-
-    let getCallCost = theSettingsBillFactory.getCallCost();
-    let getSmsCost = theSettingsBillFactory.getSmsCost();
-    let getTotal = theSettingsBillFactory.getOverallTotal();
-    let setTheLevels = theSettingsBillFactory.checkTheLevels();
-
-    myCallTotalSettings.innerHTML = getCallCost.toFixed(2);
-    mySmsTotalSettings.innerHTML = getSmsCost.toFixed(2);
-
-    myTotalSettings.innerHTML = getTotal.toFixed(2); 
-    myTotalSettings.classList.replace(myTotalSettings.className, setTheLevels);
-})
+    myTotalSettings.classList.replace(myTotalSettings.className, checkLevels);
+    // myTotalSettings.classList.remove(theSettingsBillFactory.checkTheLevels());
+    // myTotalSettings.classList.add(theSettingsBillFactory.checkTheLevels());
+}
+myBtn.addEventListener('click', settingsFunction);

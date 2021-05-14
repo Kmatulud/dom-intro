@@ -4,6 +4,7 @@ function CalculateFactory(){
     let theWarningLevels = 20;
     let theCriticalLevels = 30;
     let theTotals = 0;
+
     function checkTheBill(billString){
        let theBillString = billString.split(',');
        for (var i = 0; i < theBillString.length; i++){
@@ -25,6 +26,7 @@ function CalculateFactory(){
             return 'billTotal';
         }
     }
+    
      function allTotals(){
         return theTotals;
     }

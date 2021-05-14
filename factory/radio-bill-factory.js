@@ -5,6 +5,7 @@ function RadioFactory(){
     var theCritical = 50;
     var totalCall = 0;
     var totalSms = 0;
+
     function checkCheckedBill(myBillItemTypeRadio){
         if (myBillItemTypeRadio === 'call'){
             totalCall += callPrice;
@@ -12,6 +13,7 @@ function RadioFactory(){
             totalSms += smsPrice;
         }
     }
+
     function callTotal(){
         return totalCall
     }
@@ -19,18 +21,20 @@ function RadioFactory(){
     function smsTotal(){
         return totalSms;
     }
+
     function overallTotal(){
         return callTotal() + smsTotal();
     }
 
-    function checkAllLevels(totalCall){
-        if (totalCall >= theWarning && totalCall < theCritical){
+    function checkAllLevels(callSms){
+        if (callSms >= theWarning && callSms < theCritical){
             return 'warning';
-        }else if (totalCall >= theCritical){
+        }else if (callSms >= theCritical){
             return 'danger';
         }else
         return 'myTotalTwo';
     }
+    
     return {
         checkCheckedBill,
         callTotal,

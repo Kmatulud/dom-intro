@@ -55,18 +55,22 @@ describe('The Bill With Settings Factory function', function(){
     describe('Use The Values', function(){
         it('should be able to make 2 calls at at R2.75 each and update overall total', function(){
             let settingsFactory = SettingsBillFactory();
+            settingsFactory.setCriticalLevel(10);
+
             settingsFactory.setCallCost(2.75);
             settingsFactory.setSmsCost(0.25);
 
             settingsFactory.updateCallTotal();
             settingsFactory.updateCallTotal();
 
-            assert.equal(5,5, settingsFactory.getCallTotal())
-            assert.equal(0.00, settingsFactory.getSmsTotal())
-            assert.equal(5.5, settingsFactory.getOverallTotal())
+            assert.equal(5,5, settingsFactory.getCallTotal());
+            assert.equal(0.00, settingsFactory.getSmsTotal());
+            assert.equal(5.5, settingsFactory.getOverallTotal());
         })
         it("should be able to send 3 sms's at at 0.75c each and update overall total", function(){
             let settingsFactory = SettingsBillFactory();
+            settingsFactory.setCriticalLevel(10);
+
             settingsFactory.setCallCost(0.25);
             settingsFactory.setSmsCost(0.75);
 
@@ -74,13 +78,15 @@ describe('The Bill With Settings Factory function', function(){
             settingsFactory.updateSmsTotal();
             settingsFactory.updateSmsTotal();
 
-            assert.equal(2.25, settingsFactory.getSmsTotal())
-            assert.equal(0.00, settingsFactory.getCallTotal())
-            assert.equal(2.25, settingsFactory.getOverallTotal())
+            assert.equal(2.25, settingsFactory.getSmsTotal());
+            assert.equal(0.00, settingsFactory.getCallTotal());
+            assert.equal(2.25, settingsFactory.getOverallTotal());
 
         })
           it("should be able to send 2 sms's at at 1.75c each and make 3 calls at R2.00 each and update overall total", function(){
             let settingsFactory = SettingsBillFactory();
+            settingsFactory.setCriticalLevel(10);
+
             settingsFactory.setCallCost(2.00);
             settingsFactory.setSmsCost(1.75);
 
@@ -90,9 +96,9 @@ describe('The Bill With Settings Factory function', function(){
             settingsFactory.updateCallTotal();
             settingsFactory.updateCallTotal();
 
-            assert.equal(3.50, settingsFactory.getSmsTotal())
-            assert.equal(6.00, settingsFactory.getCallTotal())
-            assert.equal(9.50, settingsFactory.getOverallTotal())
+            assert.equal(3.50, settingsFactory.getSmsTotal());
+            assert.equal(6.00, settingsFactory.getCallTotal());
+            assert.equal(9.50, settingsFactory.getOverallTotal());
 
         })
         describe('Warning and Critical Levels', function(){
@@ -132,7 +138,7 @@ describe('The Bill With Settings Factory function', function(){
                 settingsFactory.updateSmsTotal();
                 settingsFactory.updateSmsTotal();
                 settingsFactory.updateSmsTotal();
-                settingsFactory.updateSmsTotal();
+                settingsFactory.updateSmsTotal();                
 
                 assert.equal('danger', settingsFactory.checkTheLevels())
             })

@@ -3,9 +3,8 @@ let mySmsTotalTwo = document.querySelector('.smsTotalTwo');
 let myRadioBillAddBtn = document.querySelector('.radioBillAddBtn');
 let myTotalTwo = document.querySelector('.totalTwo');
 
-
+const theRadioFactory = RadioFactory();
 function RadioBillBtn(){
-    const theRadioFactory = RadioFactory();
     let myBillItemTypeRadio = document.querySelector('.billItemTypeRadio:checked');
     theRadioFactory.checkCheckedBill(myBillItemTypeRadio.value.trim());
 

@@ -5,65 +5,88 @@ function SettingsBillFactory(){
     var theCriticalLevel = 0;
     var totalCallCost = 0;
     var totalSmsCost = 0;
-    function setCallCost(callCost){
-        theCallCost = callCost;
+    var radioValue;
+
+    function setRadioValue(string){
+        radioValue = string;
     }
+
+    function getRadioValue(){
+        return radioValue;
+    }
+
+    function setCallCost(callCost){
+        theCallCost = parseFloat(callCost);
+    }
+
     function getCallCost(){
         return theCallCost;
     } 
 
     function setSmsCost(smsCost){
-        theSmsCost = smsCost;
+        theSmsCost = parseFloat(smsCost);
     }
+
     function getSmsCost(){
         return theSmsCost;
 
     }
 
     function setWarningLevel(warningLevel){
-        theWarningLevel = warningLevel;
+        theWarningLevel = parseFloat(warningLevel);
     }
+
     function getWarningLevel(){
         return theWarningLevel;
     }
+
     function setCriticalLevel(CriticalLevel){
-        theCriticalLevel = CriticalLevel;
+        theCriticalLevel = parseFloat(CriticalLevel);
     }
+
     function getCriticalLevel(){
         return theCriticalLevel;
     }
+
     function updateCallTotal(){
         if(!hasReachedCriticalLevel()){
             totalCallCost += theCallCost;
-            console.log(totalCallCost);
         }
     }
+
     function getCallTotal(){
         return totalCallCost;
     }
+
     function updateSmsTotal(){
         if(!hasReachedCriticalLevel()){
             totalSmsCost += theSmsCost;
-            console.log(totalSmsCost);
         }
     }
+
     function getSmsTotal(){
         return totalSmsCost;
     }
+
     function getOverallTotal(){
-        return totalCallCost + totalSmsCost;
+        return getCallTotal() + getSmsTotal();
     }
+
     function hasReachedCriticalLevel(){
-        getOverallTotal() >= getCriticalLevel()
+        return getOverallTotal() >= getCriticalLevel();
     }
-    function checkTheLevels(myTotalSettings){
-        console.log(myTotalSettings);
-        if(myTotalSettings >= getWarningLevel() && myTotalSettings < getCriticalLevel()){
-            return 'warning'
-        }if (hasReachedCriticalLevel){
+
+    function checkTheLevels(){
+        if (hasReachedCriticalLevel()){
             return 'danger';
         }
+        else if(getOverallTotal() >= getWarningLevel() && getOverallTotal() < getCriticalLevel()){
+            return 'warning';
+        }else{
+            return 'myTotalSettings';
+        }
     }
+
     return {
         setCallCost,
         getCallCost,
@@ -79,6 +102,8 @@ function SettingsBillFactory(){
         getSmsTotal,
         getOverallTotal,
         checkTheLevels,
-        hasReachedCriticalLevel
+        hasReachedCriticalLevel,
+        setRadioValue,
+        getRadioValue
     }
 }

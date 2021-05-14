@@ -10,24 +10,25 @@ describe('The Text-Bill widget', function(){
          let textBillWidget = TextBillFactory();
          textBillWidget.check('sms');
         assert.equal(0.75, textBillWidget.getSmsPriceTotal());
-        assert.equal(0.75, textBillWidget.getOverallTotal())
+        assert.equal(0.75, textBillWidget.getOverallTotal());
     })
     describe('Warning and Critical levels', function(){
         it('should return class name of "warning" if overall total is 30', function(){
             let textBillWidget = TextBillFactory();
-            assert.equal('warning', textBillWidget.checkLevels(30));
+
+            assert.equal('warning', textBillWidget.checkTheLevels(30));
         }) 
         it ('should return class name of "warning" if overall total is greater than 30 but less that 50',function(){
             let textBillWidget = TextBillFactory();
-            assert.equal('warning', textBillWidget.checkLevels(39));
+            assert.equal('warning', textBillWidget.checkTheLevels(39));
         })
         it ('should return class name of "danger" if overall total is 50', function(){
             let textBillWidget = TextBillFactory();
-            assert.equal('danger', textBillWidget.checkLevels(50));
+            assert.equal('danger', textBillWidget.checkTheLevels(50));
         })
         it ('should return class name of "danger" if overall total is greater that 50', function(){
             let textBillWidget = TextBillFactory();
-            assert.equal('danger', textBillWidget.checkLevels(70));
+            assert.equal('danger', textBillWidget.checkTheLevels(70));
         })
     })
 });
