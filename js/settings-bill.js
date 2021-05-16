@@ -15,14 +15,14 @@ function updateFunction(){
     theSettingsBillFactory.setSmsCost(mySmsCostSetting.value);
     theSettingsBillFactory.setWarningLevel(myWarningLevelSetting.value);
     theSettingsBillFactory.setCriticalLevel(myCriticalLevelSetting.value);
-    // myTotalSettings.classList.remove(theSettingsBillFactory.removeWarning());
-    // myTotalSettings.classList.remove(theSettingsBillFactory.removeDanger());
+    theSettingsBillFactory.setWarningLevel(myWarningLevelSetting.value);
+    theSettingsBillFactory.setCriticalLevel(myCriticalLevelSetting.value);
 }
 updateSettingsBtn.addEventListener('click', updateFunction);
 
 
 function settingsFunction(){
-    let myBillItemTypeWithSettings = document.querySelector('.billItemTypeWithSettings:checked');/*let billtype = myBillItemTypeWithSettings.value.trim();*/
+    let myBillItemTypeWithSettings = document.querySelector('.billItemTypeWithSettings:checked');
     if(myBillItemTypeWithSettings){
         theSettingsBillFactory.setRadioValue(myBillItemTypeWithSettings.value)
     }
@@ -33,12 +33,11 @@ function settingsFunction(){
     if (theSettingsBillFactory.getRadioValue() === "call"){
         theSettingsBillFactory.updateCallTotal();
     }
+    
     if (theSettingsBillFactory.getRadioValue() === "sms"){
         theSettingsBillFactory.updateSmsTotal();
     }
 
-    theSettingsBillFactory.getWarningLevel();
-    theSettingsBillFactory.getCriticalLevel();
 
     mySmsTotalSettings.innerHTML =  theSettingsBillFactory.getSmsTotal().toFixed(2);
     myCallTotalSettings.innerHTML = theSettingsBillFactory.getCallTotal().toFixed(2);
@@ -46,9 +45,8 @@ function settingsFunction(){
 
     var checkLevels = theSettingsBillFactory.checkTheLevels();
 
-
+    theSettingsBillFactory.getWarningLevel();
+    theSettingsBillFactory.getCriticalLevel();
     myTotalSettings.classList.replace(myTotalSettings.className, checkLevels);
-    // myTotalSettings.classList.remove(theSettingsBillFactory.checkTheLevels());
-    // myTotalSettings.classList.add(theSettingsBillFactory.checkTheLevels());
 }
 myBtn.addEventListener('click', settingsFunction);
